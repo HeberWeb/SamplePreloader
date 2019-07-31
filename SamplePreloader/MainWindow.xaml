@@ -13,5 +13,7 @@
 
         FontSize="16"></Label>
         <local:PreLoaderControl Height="32" Width="32" />
+
+        <local:PreloaderCircle Height="32" Width="32" Margin="380,259,380,128" />
     </Grid>
 </Window>
