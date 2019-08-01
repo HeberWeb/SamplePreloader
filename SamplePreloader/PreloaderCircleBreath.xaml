@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="SamplePreloader.PreloaderCircleBreath"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SamplePreloader"
+             Width="50" Height="50" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <Storyboard x:Key="animation1">
+            <DoubleAnimation Storyboard.TargetName="circle1" 
+                             x:Name="circle1Width"
+                             Storyboard.TargetProperty="Width"
+                             AutoReverse="False"
+                             Completed="DoubleAnimation_Completed1"/>
+
+            <DoubleAnimation Storyboard.TargetName="circle1" 
+                             x:Name="circle1Height"
+                             Storyboard.TargetProperty="Height"
+                             AutoReverse="False"/>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid>
+        <Grid Name="gridCircle" Width="Auto" Height="Auto">
+            <local:CircleBreath x:Name="circle1" HorizontalAlignment="Center" Width="10" Height="10">
+                <local:CircleBreath.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:CircleBreath.RenderTransform>
+            </local:CircleBreath>
+        </Grid>
+    </Grid>
+</UserControl>
