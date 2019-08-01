@@ -4,28 +4,63 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SamplePreloader"
-             Width="{Binding}" Height="{Binding}" Loaded="UserControl_Loaded">
+             Width="50" Height="50" Loaded="UserControl_Loaded">
 
     <UserControl.Resources>
-        <Storyboard x:Key="animation" SpeedRatio="10">
+        <Storyboard x:Key="animation1">
             <DoubleAnimation Storyboard.TargetName="circle1" 
-                             Storyboard.TargetProperty="Width" 
-                             From="0" 
-                             To="15"
-                             Duration="0:0:10"/>
+                             Storyboard.TargetProperty="Width"
+                             Completed="DoubleAnimation_Completed1"/>
 
             <DoubleAnimation Storyboard.TargetName="circle1" 
-                             Storyboard.TargetProperty="Height" 
-                             From="0" 
-                             To="15"
-                             Duration="0:0:10"/>
+                             Storyboard.TargetProperty="Height"
+                             Completed="DoubleAnimation_Completed1"/>
         </Storyboard>
-        
+
+        <Storyboard x:Key="animation2">
+            <DoubleAnimation Storyboard.TargetName="circle2" 
+                             Storyboard.TargetProperty="Width"
+                             Completed="DoubleAnimation_Completed2"/>
+
+            <DoubleAnimation Storyboard.TargetName="circle2" 
+                             Storyboard.TargetProperty="Height"
+                             Completed="DoubleAnimation_Completed2"/>
+        </Storyboard>
+
+        <Storyboard x:Key="animation3">
+            <DoubleAnimation Storyboard.TargetName="circle3" 
+                             Storyboard.TargetProperty="Width"
+                             Completed="DoubleAnimation_Completed3"/>
+
+            <DoubleAnimation Storyboard.TargetName="circle3" 
+                             Storyboard.TargetProperty="Height"
+                             Completed="DoubleAnimation_Completed3"/>
+        </Storyboard>
     </UserControl.Resources>
     
     <Grid Width="Auto" Height="Auto">
-        <Grid Name="gridCircle">
-            <local:Circle x:Name="circle1">
+        <Grid Name="gridCircle" Width="Auto" Height="Auto">
+            <local:Circle x:Name="circle1" HorizontalAlignment="Left">
+                <local:Circle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:Circle.RenderTransform>
+            </local:Circle>
+
+            <local:Circle x:Name="circle2" HorizontalAlignment="Center">
+                <local:Circle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </local:Circle.RenderTransform>
+            </local:Circle>
+
+            <local:Circle x:Name="circle3"  HorizontalAlignment="Right">
                 <local:Circle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>

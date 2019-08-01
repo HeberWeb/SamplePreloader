@@ -21,6 +21,11 @@ namespace SamplePreloader
     /// </summary>
     public partial class PreloaderCircle : UserControl
     {
+        private bool alteraGeral = true;
+        private double speed = 7;
+        private TimeSpan time = new TimeSpan(0, 0, 3);
+        private double sizeStart = 5;
+        private double sizeEnd = 15;
         public PreloaderCircle()
         {
             InitializeComponent();
@@ -28,7 +33,52 @@ namespace SamplePreloader
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Storyboard storyboard = this.FindResource("animation") as Storyboard;
+            this.SetAnimation("animation1", alteraGeral);
+        }
+
+        private void DoubleAnimation_Completed1(object sender, EventArgs e)
+        {
+            alteraGeral = !alteraGeral;
+            this.SetAnimation("animation2", alteraGeral);
+        }
+
+        private void DoubleAnimation_Completed2(object sender, EventArgs e)
+        {
+            alteraGeral = !alteraGeral;
+            this.SetAnimation("animation3", alteraGeral);
+        }
+
+        private void DoubleAnimation_Completed3(object sender, EventArgs e)
+        {
+            alteraGeral = !alteraGeral;
+            this.SetAnimation("animation1", alteraGeral);
+        }
+
+        public void SetAnimation(string nameAnimation, bool altera)
+        {
+            double sizeFrom;
+            double sizeTo;
+            if (altera)
+            {
+                sizeFrom = sizeStart;
+                sizeTo = sizeEnd;
+            }
+            else
+            {
+                sizeFrom = sizeEnd;
+                sizeTo = sizeStart;
+            }
+
+            Storyboard storyboard = this.FindResource(nameAnimation) as Storyboard;
+            DoubleAnimation doubleAnimationWidth = storyboard.Children[0] as DoubleAnimation;
+            DoubleAnimation doubleAnimationHeigth = storyboard.Children[1] as DoubleAnimation;
+            doubleAnimationWidth.From = sizeFrom;
+            doubleAnimationWidth.To = sizeTo;
+            doubleAnimationWidth.Duration = this.time;
+            doubleAnimationHeigth.From = sizeFrom;
+            doubleAnimationHeigth.To = sizeTo;
+            doubleAnimationHeigth.Duration = this.time;
+            storyboard.SpeedRatio = speed;
             storyboard.Begin();
         }
     }
